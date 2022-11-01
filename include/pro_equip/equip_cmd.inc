@@ -9,6 +9,7 @@
 
 void equip_plugin_start() {
     RegAdminCmd("equip", Command_Equip, ADM_LEVEL, "Set equipment and weapons");
+    RegServerCmd("equip_server", Command_EquipServer, "Console version of equip command");
 }
 
 
@@ -374,6 +375,7 @@ public void equip_usage(int client) {
     ReplyToCommand(client, "!equip [bots|players|all|override <player>] [+|-all|rifles|pistols|knife] [hp|armor|he|flash|smoke=<num>]");
     ReplyToCommand(client, "!equip override <player> reset");
     ReplyToCommand(client, "!equip reset");
+    ReplyToCommand(client, "!equip reload");
     ReplyToCommand(client, "!equip examples");
 }
 public bool equip_help(int client, int &cur_arg, int args) {
@@ -390,5 +392,8 @@ public bool equip_examples(int client, int &cur_arg, int args) {
     return false;
 }
 
+public Action Command_EquipServer(int args) {
+    Command_Equip(0, args);
+}
 
 

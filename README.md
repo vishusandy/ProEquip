@@ -1,156 +1,124 @@
-
 # Pro Equip
 
-Intended to be a feature-rich drop-in replacement for CSSDM's dm_equipment.
+A feature-rich equipment menu and equipment manager plugin for Counter-Strike Source and Sourcemod.  Currently does not support CSGO.
+
+## Description
+
+Manages equipment and weapons for players and gives admins control over available weapons and equipment settings mid-game, without reloading.
+
+This is intended to be a drop-in replacement for [CSSDM]([Counter-Strike:Source Deathmatch](https://www.bailopan.net/cssdm/))'s `dm_equipment`.
 This should work without CSSDM, however I have not tested this.
 
-Works with existing config files for CSSDM's dm_equipment.  Allows config files to specifiy a number of smoke and he grenades instead of just yes/no.
+## Features
 
-Several natives are provided that allow other plugins modify a players' weapon preferences and equipment.
+- Equipment menu that can be accessed through: `guns`, `rifles`, `pistols` in chat (or with commands like `/rifles`, `!rifles`)
 
-If Pro Nightvision is running it will also allow setting custom nightvision filters (with the !setnv command) as well as reactivating nightvision after a respawn.
+- Admin commands to modify weapons and equipment settings without reloading.  Described in more detail below.
+
+- Works with [ProNightvision](https://github.com/vishusandy/ProNightvision).  If installed, it adds a `!setnv` admin command and a menu option for nightvision settings.
+
+- Ability to add custom menu items (requires recompiling)
+
+- Can set silencer settings to always add a silencer on respawn
+
+- Supports existing CSSDM config files (including per-map configs).  The config files are extended *slightly* to add configs to specify an amount for smokegrenades and hegrenades instead of just yes/no.
+
+- Provides an extensive set of natives to allow modifying equipment and weapons.
 
 ## Usage
 
-In chat type `guns`, `menu`, or `weapons` to display the main menu.  `rifles` will bring up just the rifle menu and `pistols` will show the pistols menu.  These can also be used as commands with ! or / like `!rifles` or `/menu`.
+A menu will appear when joining.  The menu can be used to choose your weapons.  Closing the menu will display a help message in chat.
 
-## Admin Commands
+### Player Commands
 
-### `!equip`
+Players can type the following commands in chat (can be used with or without chat command prefixes):
 
-The `!equip` command modifies grenade quantities, armor, and hp as well as what weapons are available for bots and/or players (all bots/all players, not individual players).  It can also be used to reset equipment to defaults.
+- `guns`, `menu`, or `weapons` to display the main menu.
 
-```
-  !equip [bots|players|all|override <player>] [+|-all|rifles|pistols|knife] [hp|armor|he|flash|smoke=<num>]
-  !equip override <target> reset
-  !equip reset
-  !equip examples
-  
-  # Examples
-  !equip he=4 smoke=2 flash=0 armor=100 hp=250
-  !equip -rifles +scout -pistols +glock +usp -grenades
-  !equip all -all +scout armor=0 hp=100
-  !equip players -flashbang +hegrenade
-  !equip override <target> reset
-```
+- `rifles` will bring up just the rifle menu
 
-### `!give`
+- `pistols` will show the pistols menu.
 
-`!give` command gives/removes weapons and can modify weapon preferences.
+### Admin Commands
 
+Each admin command has additional documentation
 
-#### Modifying preferences
+- [`!equip`](equip_cmd.md): modify equipment preferences and weapon availability
 
-The `--save` flag will change the target's weapon preferences, `--force` will change preferences while also disabling the menu.  This can be undone using `!give reset <target>`
+- [`!give`](give_cmd.md): give/remove weapons from players
 
+- [`!sethp`](sethp_cmd.md) or `!hp`: modify the hp of a player
 
-#### `!give only`
-
-Using `!give <target> only <weapon>` will remove all other weapons, including the knife.
-
-Giving a user only a specific grenade, like with `!give <target> only hegrenade` will give them an unlimited supply of the grenade, but one at a time.
-This is done this way to avoid issues when the player only has grenades but has multiple of them; if they throw one the game tries to switch to another weapon but they have no other weapons and then are unable to throw anymore of that grenade.  If using CSSDM set `cssdm_refill_ammo "0"` in the `cssdm.cfg` for this to work properly.
-
-
-#### `!give strip`
-
-Using `!give <target> strip` gives more flexibility than `only` by allowing the admin to specify which weapon types will be removed (or added).  Unlike `only` the `strip` subcommand does not require a weapon name to be specified (can be used as just `!give <target> strip`).  If no other weapon types are specified it will leave the user with only a knife and the specified weapon (if given).  Weapon types can be removed 
+- [`!setnv`](setnv_cmd.md): if [ProNightvision](https://github.com/vishusandy/ProNightvision) is running this command can be used to turn on/off nightvision and set filter preferences
 
 ### Console Commands
 
+- `equip_server`: the same as `!equip` but works from the console
+
+- `give_server`: the same as `!give` but works from the console
+
 - `dbg_equip dump`: dumps debug info to the log file.  The location of this file can be found in `include/pro_equip/constants.inc`.
-
-#### Usage
-
-Command usage:
-
-```
-  !give <target> <weapon> [--save|--force]
-  !give <target> random [rifle|pistol|gun|grenade] [--save|--force]
-  !give <target> remove [rifle|pistol|knife|<weapon>] [--save|--force]
-  !give <target> only <weapon> [--save|--force]
-  !give <target> strip [+|-grenades|rifles|pistols|knife] [<weapon>] [--save|--force]
-  !give reset <target>
-  !give help|list|examples
-```
-
-Examples:
-
-```
-  !give help
-  !give examples
-  !give <target> scout
-  !give <target> random grenade
-  !give <target> random pistol --save
-  !give <target> only hegrenade --force
-  !give @all scout --force
-  !give @bots only random any
-  !give @all strip -grenades random rifle
-  !give @all strip random pistol
-  !give reset @all
-```
-
-### `sethp`
-
-Set a player's current hp.  If set equal to or less than 0 the target will die.
-
-Examples:
-
-- `!sethp <target> 250` will set the target's current hp to 250
-- `!sethp <target> +50` will add 50 to the target's current hp
-- `!sethp <target> -50` will subtract 50 from the target's current hp
-- `!sethp <target> 80 --save` will set the target's hp to 80 immediately and everytime they spawn as well
-
-
-
-
-### `!setnv`
-
-set a player's nightivision (if ProNightvision is loaded).
-
-Usage:
-
-```
-  !setnv <target> on|normal|off|<filter_name>
-  !setnv list
-```
-
-On defaults to normal.
-
-Examples:
-
-```
-  !setnv help
-  !setnv <target> normal
-  !setnv <target> off
-  !setnv <target> strong
-  !setnv list
-```
 
 ## Installation
 
-Installation is pretty simple.  If using CSSDM, disable the `dm_equipment` plugin first.  Copy the .smx file to the plugins folder (e.g. `cstrike/addons/sourcemod/plugins`) and load the file using `sm plugins load`.
+Installation is pretty simple.  
 
-### Optional Installation
+1. If using CSSDM, disable the `dm_equipment` plugin first.
 
-Custom menu entries can be added with a database.  You can skip this step if no custom menu entries are desired.  You can add up to 30 custom menu entries (that number seems gratuitous, but maybe there's a use case for that many).
+2. Copy the .smx file to the plugins folder (e.g. `cstrike/addons/sourcemod/plugins`) and load the file using `sm plugins load`.
 
-To add custom menu entries add the following to`cstrike/addons/sourcemod/configs/databases.cfg`:
+3. Optionally add CSSDM config files.  It can work without any config files, but using them is recommended.
+
+## Config files
+
+An example of the CSSDM config format can be found [here](cssdm.equip.txt)
+
+- Global settings
+  
+  - `cstrike/cfg/cssdm/cssdm.equip.txt`: equipment and weapon preferences
+
+- Map Specific settings
+  
+  - `cstrike/cfg/cssdm/maps/<map_name>.equip.txt`: map specific equipment and weapon preferences
+
+If using CSSDM it is recommended to set `cssdm_refill_ammo "0"` in `cstrike/cfg/cssdm/cssdm.cfg` to allow infinite grenades to work properly.
+
+### Optional - Custom Menu Entries
+
+Custom menu entries can be added with a database.  You can skip this step if no custom menu entries are desired.  You can add up to 30 custom menu entries (that number seems gratuitous, but maybe there's a use case it).
+
+1. To add custom menu entries add the following to`cstrike/addons/sourcemod/configs/databases.cfg`:
 
 ```
   "pro_menu"
-	{
-		"driver"			"default"
-		"host"				"<hostname>"
-		"database"		"<database>"
-		"user"				"<username>"
-		"pass"				"<password>"
-	}
+    {
+        "driver"    "default"
+        "host"      "<hostname>"
+        "database"  "<database>"
+        "user"      "<username>"
+        "pass"      "<password>"
+    }
 ```
 
-On first run the table will be automatically created (only tested with MySQL but should work with Postgres and SQLite too).
+2. After running with the `databases.cfg` edit, the table will be automatically created (only tested with MySQL but should work with Postgres and SQLite too).
 
-If you have problems you can manually create the table.  MySQL code:
+3. Add rows consisting of:
+   
+   - an auto-incremented `id`
+   
+   - an `ordering` field to specify the arbitrary order to sort the menu items by (lowest are displayed first)
+   
+   - a `title` that will be displayed in the menu
+   
+   - a `value` which is a unique value tied to that entry
+   
+   - a `cmd` which will be the command that gets executed (do not include a ! or /)
+   
+   - an optional message that gets printed to chat the first time the user selects the menu item (useful for informing the user they can also use the associated command directly). Leave blank or set to null to disable the message.
+
+### Manual Table Creation
+
+If you have problems with the automatic table creation you can create it manually.  MySQL code:
 
 ```
 CREATE TABLE `pro_menu` (
@@ -170,19 +138,10 @@ ALTER TABLE `pro_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ```
 
-Each entry consists of: 
-- an auto-incremented `id`
-- an `ordering` field to specify the arbitrary order to sort the menu items by (lowest are displayed first)
-- a `title` that will be displayed in the menu
-- a `value` which is a unique value tied to that entry
-- a `cmd` which will be the command that gets executed (do not include a ! or /)
-- an optional message that gets printed to chat the first time the user selects the menu item (useful for informing the user they can also use the associated command directly).  Leave blank or set to null to disable the message.
-
-
-## TODO
+## Future Plans
 
 - Allow `!equip` to set infinite ammo and reserve ammo amount for rifles/pistols and grenades
 - Allow `!setnv` to specify an intensity
+- Add support for translations
 - Maybe: refilling reserve ammo when empty
-- Maybe: per-player weapon availabilities instead of just players or bots
-
+- Maybe: per-player weapon availability instead of just players and/or bots

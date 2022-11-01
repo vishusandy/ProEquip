@@ -1,0 +1,163 @@
+"Equipment"
+{
+    "Settings"
+    {
+        // Allow clients to say "guns" to restore their menu.
+        // This is disabled if the menu isn't drawn.
+        //
+        "guns_command"  "yes"
+    }
+
+    //
+    // Enable or disable menus here.
+    // For the primary and secondary gun menus, you can use:
+    //    "no"     - Completely disable the menus
+    //    "yes"    - Enable the menus
+    //    "random" - Pick a random weapon from the menus automatically for players
+    //
+    "Menus"
+    {
+        // Primary gun menu
+        "primary"   "yes"
+        
+        // Secondary gun menu
+        "secondary" "yes"
+        
+        // Normal CS:S buy menu/commands
+        // If enabled, the main equipment menu will be disabled.
+        "buy"   "no"
+    }
+    
+    //
+    // Automatic things to give on spawn.
+    //
+    "AutoItems"
+    {
+        // Health amount to give (0 to use default from game/other plugin)
+        "health"        "100"
+
+        // Armor amount to give
+        "armor"         "100"
+        
+        // Whether to give a helmet.  If you want to disable armor, you must 
+        // set this to "no" as well as setting armor to 0.
+        "helmet"        "yes"
+        
+        // Number of flashbangs to give
+        "flashbangs"    "1"
+        
+        // Whether to give a smoke grenade
+        //
+        // This config option was modified to allow an amount 
+        // as well as "yes" or "no"
+        "smokegrenade"  "2"
+        
+        // Whether to give an HE grenade
+        //
+        // This config option was modified to allow an amount 
+        // as well as "yes" or "no"
+        "hegrenade"     "5"
+
+        // Whether to give defusekits to CTs
+        "defusekits"    "no"
+        
+        // Whether to give nightvision
+        "nightvision"   "yes"
+
+        //CS:GO Items
+        
+        //Whether to give a decoy grenade
+        "decoy"         "no"
+        
+        //Whether to give a taser
+        "taser"         "yes"
+    }
+    
+    //
+    // Items listed here will be automatically given to bots. 
+    // If multiple weapons exist from one category (primary/secondary),
+    // then a random item will be chosen from that category.  If the same
+    // weapon is added more than once, it increases its chances of being 
+    // picked.  No more than 32 weapons can be added to either the secondary
+    // or the primary pool.
+    //
+    "BotItems"
+    {
+        "weapon"        "ak47"
+        "weapon"        "ak47"
+        "weapon"        "ak47"
+        "weapon"        "m4a1"
+        "weapon"        "m4a1"
+        "weapon"        "m4a1"
+        "weapon"        "m4a1"
+        "weapon"        "galil"
+        "weapon"        "famas"
+        "weapon"        "mp5navy"
+        "weapon"        "xm1014"
+        "weapon"        "tmp"
+        "weapon"        "mac10"
+        "weapon"        "p90"
+        "weapon"        "p90"
+        "weapon"        "aug"
+        "weapon"        "sg552"
+        "weapon"        "deagle"
+        "weapon"        "deagle"
+        "weapon"        "glock"
+        "weapon"        "usp"
+        "weapon"        "fiveseven"
+        "weapon"        "elite"
+        "health"        "100"
+        "armor"         "0"
+        "helmet"        "no"
+        "flashbangs"    "0"
+        "smokegrenade"  "no"
+        "hegrenade"     "no"
+        "defusekits"    "no"
+        "decoy"         "no"
+        "taser"         "yes"
+    }
+    
+    //
+    // If no items exist, the menu will be skipped.
+    // If only one item exists, the menu will be skipped
+    // and players will receive the item automatically.
+    // 
+    // The first rifle will be given by default on join.
+    "PrimaryMenu"
+    {
+        "weapon"    "m4a1"
+        "weapon"    "ak47"
+        "weapon"    "aug"
+        "weapon"    "galil"
+        "weapon"    "famas"
+        "weapon"    "m249"
+        "weapon"    "awp"
+        "weapon"    "scout"
+        "weapon"    "sg552"
+        "weapon"    "sg550"
+        "weapon"    "g3sg1"
+        "weapon"    "p90"
+        "weapon"    "mac10"
+        "weapon"    "tmp"
+        "weapon"    "mp5navy"
+        "weapon"    "ump45"
+        "weapon"    "xm1014"
+        "weapon"    "m3"
+    }
+        
+    //
+    // If no items exist, the menu will be skipped.
+    // If only one item exists, the menu will be skipped
+    // and players will receive the item automatically.
+    //
+    // The first pistol will be given by default on join.
+    "SecondaryMenu"
+    {
+        "weapon"    "deagle"
+        "weapon"    "p228"
+        "weapon"    "usp"
+        "weapon"    "glock"
+        "weapon"    "fiveseven"
+        "weapon"    "elite"
+    }
+}

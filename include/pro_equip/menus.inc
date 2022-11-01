@@ -53,12 +53,7 @@ public Action display_main_menu(int client, int args) {
         MenuExtra extra;
         menu_extras.GetArray(i, extra);
         main_menu.AddItem(extra.value, extra.title);
-    }
-    // main_menu.AddItem("store", "Store");
-    // main_menu.AddItem("perks", "Perks");
-    // main_menu.AddItem("sound_perks", "Sounds");
-    // main_menu.AddItem("maps", "Maps");
-    
+    }    
     
     if(player_equip.silencers) {
         if(!player_data[client].equip.silencers) {

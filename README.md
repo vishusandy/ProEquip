@@ -71,15 +71,15 @@ Installation is pretty simple.
 
 ## Config files
 
-An example of the CSSDM config format can be found [here](cssdm.equip.txt)
+An example of the config format can be found [here](cssdm.equip.txt).
 
 - Global settings
   
-  - `cstrike/cfg/cssdm/cssdm.equip.txt`: equipment and weapon preferences
+  - `cstrike/cfg/cssdm/cssdm.equip.txt`
 
 - Map Specific settings
   
-  - `cstrike/cfg/cssdm/maps/<map_name>.equip.txt`: map specific equipment and weapon preferences
+  - `cstrike/cfg/cssdm/maps/<map_name>.equip.txt`
 
 If using CSSDM it is recommended to set `cssdm_refill_ammo "0"` in `cstrike/cfg/cssdm/cssdm.cfg` to allow infinite grenades to work properly.
 

@@ -69,6 +69,10 @@ Installation is pretty simple.
 
 3. Optionally add CSSDM config files.  It can work without any config files, but using them is recommended.
 
+4. Optionally install [ProNightvision](https://github.com/vishusandy/ProNightvision)
+
+5. [GitHub - vishusandy/ProNightvision: Nightvision menu and custom nightvision filters plugin for Counter-Strike Source with Sourcemod](https://github.com/vishusandy/ProNightvision)
+
 ## Config files
 
 An example of the config format can be found [here](cssdm.equip.txt).

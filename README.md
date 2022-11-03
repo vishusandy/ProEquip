@@ -1,6 +1,6 @@
 # Pro Equip
 
-A feature-rich equipment menu and equipment manager plugin for Counter-Strike Source and Sourcemod.  Currently does not support CSGO.
+A feature-rich equipment menu and equipment manager plugin for Counter-Strike Source and Sourcemod.  Currently does not support CSGO (if you would like to help make it support CSGO let me know).
 
 ## Description
 
@@ -71,25 +71,31 @@ Installation is pretty simple.
 
 4. Optionally install [ProNightvision](https://github.com/vishusandy/ProNightvision)
 
-5. [GitHub - vishusandy/ProNightvision: Nightvision menu and custom nightvision filters plugin for Counter-Strike Source with Sourcemod](https://github.com/vishusandy/ProNightvision)
+5. Optionally add custom menu entries (see below)
 
-## Config files
+### Config files
 
-An example of the config format can be found [here](cssdm.equip.txt).
+Config files are not required for the plugin to work, however without any config files you can't specify default weapon/equipment settings.  An example of the config format can be found [here](cssdm.equip.txt).
+
+Config files:
 
 - Global settings
   
   - `cstrike/cfg/cssdm/cssdm.equip.txt`
 
-- Map Specific settings
+- Map-specific settings
   
   - `cstrike/cfg/cssdm/maps/<map_name>.equip.txt`
 
-If using CSSDM it is recommended to set `cssdm_refill_ammo "0"` in `cstrike/cfg/cssdm/cssdm.cfg` to allow infinite grenades to work properly.
+Note: If using CSSDM it is recommended to set `cssdm_refill_ammo "0"` in `cstrike/cfg/cssdm/cssdm.cfg` to allow infinite grenades to work properly.
 
 ### Optional - Custom Menu Entries
 
-Custom menu entries can be added with a database.  You can skip this step if no custom menu entries are desired.  You can add up to 30 custom menu entries (that number seems gratuitous, but maybe there's a use case it).
+Optionally, custom menu entries can added and will be displayed in the main menu. Each menu entry will have a command associated with it; after selecting the menu entry the command will be executed with the specified client ID.
+
+Custom menu entries are stored in a database.  You can skip this step if no custom menu entries are desired.  You can add up to 30 custom menu entries (that number seems gratuitous, but maybe there's a use case it).
+
+How to add custom menu entries:
 
 1. To add custom menu entries add the following to`cstrike/addons/sourcemod/configs/databases.cfg`:
 
@@ -104,7 +110,7 @@ Custom menu entries can be added with a database.  You can skip this step if no 
     }
 ```
 
-2. After running with the `databases.cfg` edit, the table will be automatically created (only tested with MySQL but should work with Postgres and SQLite too).
+2. After starting the plugin the table will be automatically created (only tested with MySQL but should work with Postgres and SQLite too).  If you have issues see: [Database Setup](db_setup.md)
 
 3. Add rows consisting of:
    
@@ -118,34 +124,13 @@ Custom menu entries can be added with a database.  You can skip this step if no 
    
    - a `cmd` which will be the command that gets executed (do not include a ! or /)
    
-   - an optional message that gets printed to chat the first time the user selects the menu item (useful for informing the user they can also use the associated command directly). Leave blank or set to null to disable the message.
+   - an optional message that gets printed to chat the first time the user selects the menu item (useful for learning purposes). Leave blank or set to null to not show a message.  It is recommended to type a short message 
 
-### Manual Table Creation
+### Future Plans
 
-If you have problems with the automatic table creation you can create it manually.  MySQL code:
-
-```
-CREATE TABLE `pro_menu` (
-  `id` int(11) NOT NULL,
-  `ordering` int(11) NOT NULL,
-  `value` varchar(32) NOT NULL,
-  `title` varchar(32) NOT NULL,
-  `cmd` varchar(32) NOT NULL,
-  `msg` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-ALTER TABLE `pro_menu`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `pro_menu_value_unique` (`value`);
-
-ALTER TABLE `pro_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-```
-
-## Future Plans
-
+- Add support for CSGO
+- Add support for translations
 - Allow `!equip` to set infinite ammo and reserve ammo amount for rifles/pistols and grenades
 - Allow `!setnv` to specify an intensity
-- Add support for translations
 - Maybe: refilling reserve ammo when empty
 - Maybe: per-player weapon availability instead of just players and/or bots

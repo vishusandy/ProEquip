@@ -6,7 +6,7 @@ A feature-rich equipment menu and equipment manager plugin for Counter-Strike So
 
 Manages equipment and weapons for players and gives admins control over available weapons and equipment settings mid-game, without reloading.
 
-This is intended to be a drop-in replacement for [CSSDM]([Counter-Strike:Source Deathmatch](https://www.bailopan.net/cssdm/))'s `dm_equipment`.
+This is intended to be a drop-in replacement for [CSSDM](https://www.bailopan.net/cssdm/)'s `dm_equipment`.
 This should work without CSSDM, however I have not tested this.
 
 ## Features

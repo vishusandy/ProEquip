@@ -147,17 +147,17 @@ enum struct AvailableWeapons {
         if(weapon_slots.GetValue(weapon, slot) && weapon_indexes.GetValue(weapon, index)) {
             switch(slot) {
                 case 0: {
-                    result = remove_all_items(this.primary_choices, this.num_primaries, index) > 0;
+                    result = remove_item_all(this.primary_choices, this.num_primaries, index) > 0;
                     this.clear_weapon_available(index, slot);
                     return result;
                 }
                 case 1: {
-                    result = remove_all_items(this.secondary_choices, this.num_secondaries, index) > 0;
+                    result = remove_item_all(this.secondary_choices, this.num_secondaries, index) > 0;
                     this.clear_weapon_available(index, slot);
                     return result;
                 }
                 case 3: {
-                    result = remove_all_items(this.grenade_choices, this.num_grenades, index) > 0;
+                    result = remove_item_all(this.grenade_choices, this.num_grenades, index) > 0;
                     this.clear_weapon_available(index, slot);
                     return result;
                 }

@@ -4,6 +4,9 @@ A feature-rich equipment menu and equipment manager plugin for Counter-Strike So
 
 Easy [installation](install.md); no database required (but can be added to allow custom menu entries).
 
+## Contents
+
+
 - [Installation](install.md)
 - [Screenshots](screenshots.md)
 - [Description](#description)

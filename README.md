@@ -2,26 +2,24 @@
 
 A feature-rich equipment menu and equipment manager plugin for Counter-Strike Source and Sourcemod.  Currently does not support CSGO (if you would like to help make it support CSGO let me know).
 
+Easy [installation](install.md); no database required (but can be added to allow custom menu entries).
+
+- [Installation](install.md)
+- [Screenshots](screenshots.md)
+- [Description](#description)
+- [Features](#features)
+- [Usage](#usage)
+    - [player commands](#player-commands)
+    - [admin commands](#admin-commands)
+    - [console commands](#console-commands)
+- [Todo](#future-plans)
+
 ## Screenshots
 
-Main menu:
+Example menu (items 4-7 are server-specific custom menu entries):
 ![Pro Equip main menu](screenshots/equip.png)
 
-Rifles menu:
-![Pro Equip main menu](screenshots/equip_rifles.png)
-
-`!give` command:
-![Give command output](screenshots/give_command.png)
-![Give examples output](screenshots/give_examples.png)
-![Give help output](screenshots/give_help.png)
-
-`!equip` command:
-![Example of using the equip command](screenshots/equip_command.png)
-![Another example of using the equip command](screenshots/equip_command2.png)
-![Equip examples output](screenshots/equip_examples.png)
-![Equip help output](screenshots/equip_help.png)
-![Equip reset output](screenshots/equip_reset.png)
-
+See [screenshots](screenshots.md) for more.
 
 ## Description
 
@@ -79,73 +77,6 @@ Each admin command has additional documentation
 - `give_server`: the same as `!give` but works from the console
 
 - `dbg_equip dump`: dumps debug info to the log file.  The location of this file can be found in `include/pro_equip/constants.inc`.
-
-## Installation
-
-Installation is pretty simple.  
-
-1. If using CSSDM, disable the `dm_equipment` plugin first.
-
-2. Copy the .smx file to the plugins folder (e.g. `cstrike/addons/sourcemod/plugins`) and load the file using `sm plugins load`.
-
-3. Optionally add CSSDM config files.  It can work without any config files, but using them is recommended.
-
-4. Optionally install [ProNightvision](https://github.com/vishusandy/ProNightvision)
-
-5. Optionally add custom menu entries (see below)
-
-### Config files
-
-Config files are not required for the plugin to work, however without any config files you can't specify default weapon/equipment settings.  An example of the config format can be found [here](cssdm.equip.txt).
-
-Config files:
-
-- Global settings
-  
-  - `cstrike/cfg/cssdm/cssdm.equip.txt`
-
-- Map-specific settings
-  
-  - `cstrike/cfg/cssdm/maps/<map_name>.equip.txt`
-
-Note: If using CSSDM it is recommended to set `cssdm_refill_ammo "0"` in `cstrike/cfg/cssdm/cssdm.cfg` to allow infinite grenades to work properly.
-
-### Optional - Custom Menu Entries
-
-Optionally, custom menu entries can added and will be displayed in the main menu. Each menu entry will have a command associated with it; after selecting the menu entry the command will be executed with the specified client ID.
-
-Custom menu entries are stored in a database.  You can skip this step if no custom menu entries are desired.  You can add up to 30 custom menu entries (that number seems gratuitous, but maybe there's a use case it).
-
-How to add custom menu entries:
-
-1. To add custom menu entries add the following to`cstrike/addons/sourcemod/configs/databases.cfg`:
-
-```
-  "pro_menu"
-    {
-        "driver"    "default"
-        "host"      "<hostname>"
-        "database"  "<database>"
-        "user"      "<username>"
-        "pass"      "<password>"
-    }
-```
-
-2. After starting the plugin the table will be automatically created (only tested with MySQL but should work with Postgres and SQLite too).  If you have issues see: [Database Setup](db_setup.md)
-
-3. Add rows consisting of:
-   
-   - an auto-incremented `id`
-   
-   - an `ordering` field to specify the arbitrary order to sort the menu items by (lowest are displayed first)
-   
-   - a `title` that will be displayed in the menu
-   
-   - a `value` which is a unique value tied to that entry
-   
-   - a `cmd` which will be the command that gets executed (do not include a ! or /)
-   
-   - an optional message that gets printed to chat the first time the user selects the menu item (useful for learning purposes). Leave blank or set to null to not show a message.  It is recommended to type a short message 
 
 ### Future Plans
 

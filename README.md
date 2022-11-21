@@ -2,6 +2,14 @@
 
 A feature-rich equipment menu and equipment manager plugin for Counter-Strike Source and Sourcemod.  Currently does not support CSGO (if you would like to help make it support CSGO let me know).
 
+## Screenshots
+
+Main menu:
+![Pro Equip main menu](equip.png)
+
+Rifles menu:
+![Pro Equip main menu](equip_rifles.png)
+
 ## Description
 
 Manages equipment and weapons for players and gives admins control over available weapons and equipment settings mid-game, without reloading.

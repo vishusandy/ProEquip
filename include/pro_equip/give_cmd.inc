@@ -12,8 +12,8 @@
 
 
 void give_plugin_start() {
-    RegAdminCmd("give", Command_Give, ADM_LEVEL, "Give item to target");
-    RegServerCmd("give_server", Command_GiveServer, "Give item to target (server command)");
+    RegAdminCmd("sm_give", Command_Give, ADM_LEVEL, "Give item to target");
+    RegServerCmd("sm_give_server", Command_GiveServer, "Give item to target (server command)");
 }
 
 enum giveType {

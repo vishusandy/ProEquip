@@ -5,10 +5,23 @@ A feature-rich equipment menu and equipment manager plugin for Counter-Strike So
 ## Screenshots
 
 Main menu:
-![Pro Equip main menu](equip.png)
+![Pro Equip main menu](screenshots/equip.png)
 
 Rifles menu:
-![Pro Equip main menu](equip_rifles.png)
+![Pro Equip main menu](screenshots/equip_rifles.png)
+
+`!give` command:
+![Give command output](screenshots/give_command.png)
+![Give examples output](screenshots/give_examples.png)
+![Give help output](screenshots/give_help.png)
+
+`!equip` command:
+![Example of using the equip command](screenshots/equip_command.png)
+![Another example of using the equip command](screenshots/equip_command2.png)
+![Equip examples output](screenshots/equip_examples.png)
+![Equip help output](screenshots/equip_help.png)
+![Equip reset output](screenshots/equip_reset.png)
+
 
 ## Description
 

@@ -6,8 +6,7 @@ Easy [installation](install.md); no database required (but can be added to allow
 
 ## Contents
 
-
-- [Installation](install.md)
+- [Install](#installation)
 - [Screenshots](screenshots.md)
 - [Description](#description)
 - [Features](#features)
@@ -16,6 +15,10 @@ Easy [installation](install.md); no database required (but can be added to allow
     - [admin commands](#admin-commands)
     - [console commands](#console-commands)
 - [Todo](#future-plans)
+
+## Installation
+
+See [Installation](install.md) for installation instructions.
 
 ## Screenshots
 

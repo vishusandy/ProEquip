@@ -24,7 +24,7 @@
 
 #include <pro_equip/ProEquip.inc>
 
-public Plugin myinfo = { name = "Pro Equip", author = "Vishus", description = "Equipment and weapons", version = "0.1.2", url = "https://github.com/vishusandy/ProEquip" };
+public Plugin myinfo = { name = "Pro Equip", author = "Vishus", description = "Equipment and weapons", version = "0.1.3", url = "https://github.com/vishusandy/ProEquip" };
 
 
 public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max) {

@@ -2,11 +2,11 @@
 
 A feature-rich equipment menu and equipment manager plugin for Counter-Strike Source and Sourcemod.  Currently does not support CSGO (if you would like to help make it support CSGO let me know).
 
-Easy [installation](install.md); no database required (but can be added to allow custom menu entries).
+Easy installation - no database required (but can be added to allow custom menu entries).  See [installation](install.md) for more.
 
 ## Contents
 
-- [Install](#installation)
+- [Installation](#installation)
 - [Screenshots](screenshots.md)
 - [Description](#description)
 - [Features](#features)
@@ -18,7 +18,7 @@ Easy [installation](install.md); no database required (but can be added to allow
 
 ## Installation
 
-See [Installation](install.md) for installation instructions.
+See [Installation](install.md) for detailed installation instructions.
 
 ## Screenshots
 

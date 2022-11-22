@@ -84,7 +84,7 @@ Each admin command has additional documentation
 
 - `dbg_equip dump`: dumps debug info to the log file.  The location of this file can be found in `include/pro_equip/constants.inc`.
 
-### Future Plans
+## Future Plans
 
 - Add support for CSGO
 - Add support for translations

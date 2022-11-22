@@ -3,9 +3,11 @@
 
 Installation is pretty simple.  There are optional components, but the basic install is just the smx file.  It is highly recommended to add some [config files](#config-files), but it can run without those.
 
-- [Installation](#basic-installation)
+- Installation
+    - [Installation](#basic-installation)
     - [config files](#config-files)
-    - [optional - custom menu entries](install.md#optional---custom-menu-entries)
+    - Optional
+        - [optional - custom menu entries](install.md#optional---custom-menu-entries)
 
 ## Basic Installation
 
@@ -17,7 +19,7 @@ Installation is pretty simple.  There are optional components, but the basic ins
 
 4. **Optionally** install [ProNightvision](https://github.com/vishusandy/ProNightvision)
 
-5. **Optionally** add custom menu entries (see below)
+5. **Optionally** add custom menu entries ([see below](install.md#optional---custom-menu-entries))
 
 ## Config files
 
